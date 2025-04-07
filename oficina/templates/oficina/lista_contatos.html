@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Clientes</title>
+</head>
+<body>
+    <h1>Clientes Cadastrados</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Carro</th>
+                <th>Placa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.nome }}</td>
+                <td>{{ cliente.carro }}</td>
+                <td>{{ cliente.placa }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Nenhum cliente cadastrado</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
