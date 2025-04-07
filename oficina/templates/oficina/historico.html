@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+</head>
+<body>
+    {% include 'oficina/navbar.html' %}
+
+    <div class="container mt-5">
+        <h1>Histórico de Registros</h1>
+
+        {% if historico %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Carro</th>
+                        <th>Nome</th>
+                        <th>Placa</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in historico %}
+                        <tr>
+                            <td>{{ item.carro }}</td>
+                            <td>{{ item.nome }}</td>
+                            <td>{{ item.placa }}</td>
+                            <td>{{ item.data }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Nenhum histórico encontrado.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
