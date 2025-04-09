@@ -1,23 +1,36 @@
-# Created by venv; see https://docs.python.org/3/library/venv.html
-*
-# Ambiente virtual
-venv/
-
-# Arquivos de cache do Python
-__pycache__/
+# Python bytecode files
 *.pyc
 *.pyo
-*.pyd
+__pycache__/
 
-# Banco de dados SQLite (caso esteja usando SQLite para desenvolvimento)
+# Directories for virtual environments
+venv/
+.env/
+env/
+virtualenv/
+
+# Django SQLite database
 db.sqlite3
 
-# Configurações e credenciais sensíveis (se aplicável)
-.env
+# Django migrations (as they can be recreated)
+*/migrations/
 
-# Arquivos de log
+# Logs
 *.log
 
-# Arquivos do VSCode (se estiver usando)
-.vscode/
+# Media files (geralmente armazenados em uma pasta `media/`)
+media/
 
+# Static files (geralmente armazenados em uma pasta `static/`)
+static/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# IDE and editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
