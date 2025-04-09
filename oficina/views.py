@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
+from django.urls import reverse
 from .models import Cliente
 from .forms import LoginForm
 
@@ -22,14 +23,13 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)  # Faz o login do usuário
-                return redirect('contatos')  # Redireciona para a página desejada após login
+                return redirect(reverse('lista_de_clientes'))  # Redireciona para a página desejada após login
             else:
                 form.add_error(None, 'Usuário ou senha inválidos')  # Erro genérico
     else:
         form = LoginForm()  # Exibe o formulário vazio para GET
 
-    return render(request, 'oficina/login.hmtl', {'form': form})
-
+    return render(request, 'oficina/login.html', {'form': form})
 
 # @login_required
 def cadastro(request,HttpResponsePermantRedirect='contatos/'):
