@@ -1,4 +1,5 @@
 from django import forms
+from .models import Cliente
 
 class LoginForm(forms.Form):
     username = forms.CharField(
@@ -16,3 +17,8 @@ class LoginForm(forms.Form):
         }),
         label='Senha'
     )
+class ClienteForm(forms.ModelForm):
+    class Meta:
+        model = Cliente
+
+        fields = ['nome', 'carro', 'placa']

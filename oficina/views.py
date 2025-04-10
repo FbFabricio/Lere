@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.urls import reverse
 from .models import Cliente
-from .forms import LoginForm
+from .forms import LoginForm, ClienteForm
 
 # Create your views here.
 
@@ -32,7 +32,7 @@ def login_view(request):
     return render(request, 'oficina/login.html', {'form': form})
 
 # @login_required
-def cadastro(request,HttpResponsePermantRedirect='contatos/'):
+def cadastro(request):
     if request.method == 'POST':
         nome = request.POST.get('nome')
         carro = request.POST.get('carro')
@@ -41,7 +41,7 @@ def cadastro(request,HttpResponsePermantRedirect='contatos/'):
         # Criar e salvar no banco de dados
         Cliente.objects.create(nome=nome, carro=carro, placa=placa)
 
-        return redirect(HttpResponsePermantRedirect)  # Redireciona para a lista de veículos
+        return redirect()  # Redireciona para a lista de veículos
 
     return render(request, 'oficina/cadastro.html')
 
@@ -50,3 +50,14 @@ def cadastro(request,HttpResponsePermantRedirect='contatos/'):
 def historico(request):
     historico = Cliente.objects.all()
     return render(request, 'oficina/historico.html', {'historico': historico})
+
+def cadastro_cliente(request):
+    if request.method == 'POST':
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            form.save()  # <- Aqui ele salva no banco
+            return redirect('lista_de_clientes')  # ou qualquer outra página
+    else:
+        form = ClienteForm()
+    
+    return render(request, 'oficina/cadastro.html', {'form': form})
