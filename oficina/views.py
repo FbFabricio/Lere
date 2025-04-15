@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
+from django.http import JsonResponse
 from .models import Cliente
 from .forms import LoginForm, ClienteForm
 
@@ -104,4 +105,9 @@ def remover_cliente(request, cliente_id):
     cliente = get_object_or_404(Cliente, id=cliente_id)
     cliente.delete()
     return redirect('lista_de_clientes')
+
+def buscar_clientes(request):
+    q = request.GET.get('q', '')
+    clientes = Cliente.objects.filter(nome__icontains=q).values('id', 'nome')[:5]
+    return JsonResponse(list(clientes), safe=False)
 

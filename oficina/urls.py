@@ -17,6 +17,9 @@ urlpatterns = [
 
 
     path('clientes/<int:cliente_id>/remover/', views.remover_cliente, name='remover_cliente'),
+
+    path('ajax/buscar_clientes/', views.buscar_clientes, name='buscar_clientes'),
+
     
     ]
 
