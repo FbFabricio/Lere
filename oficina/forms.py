@@ -17,8 +17,10 @@ class LoginForm(forms.Form):
         }),
         label='Senha'
     )
+
+    
 class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
 
-        fields = ['nome', 'carro', 'placa']
+        fields = ['nome', 'carro', 'placa', 'servicos', 'telefone']

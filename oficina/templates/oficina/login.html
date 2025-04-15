@@ -42,21 +42,25 @@
         <!-- fomulario -->
         <div class="container" style="max-width: 400px;">
             <div class="card shadow p-4">
-                <h2 class="text-center mb-4">Login</h2>
+
+                <h2 class="text-center mb-4">Lere Carburadores</h2>
+
                 <form method="post">
                     {% csrf_token %}
 
                     <div class="mb-3">
+
                         <label for="{{ form.username.id_for_label }}"></label>
                         {{ form.username|add_class:"form-control" | attr:"placeholder:Usuário" }}
                         {% if form.username.errors %}
                             <div class="text-danger">{{ form.username.errors }}</div>
                         {% endif %}
+
                     </div>
 
                     <div class="mb-3">
                         <label for="{{ form.password.id_for_label }}"></label>
-                        {{ form.password|add_class:"form-control" | attr:"placeholder:Ex:Senha" }}
+                        {{ form.password|add_class:"form-control" | attr:"placeholder:Senha" }}
                         {% if form.password.errors %}
                             <div class="text-danger">{{ form.password.errors }}</div>
                         {% endif %}
