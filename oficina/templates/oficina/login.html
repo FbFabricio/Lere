@@ -9,73 +9,88 @@
     <style>
         body {
             height: 100vh;
-            background-color: #000000;
+            background-color: #212529;
+            color: #fff;
         }
-        .login-card {
-            max-width: 400px;
+        .icon-tools {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .form-control {
+            background-color: #495057;
+            border: none;
+            color:rgb(126, 134, 141);
+        }
+        .form-control::placeholder {
+            color: #adb5bd;
+        }
+        .btn-primary {
+            background-color: #495057;
+            border: none;
             width: 100%;
+            font-weight: bold;
         }
-        .logo-box {
-            width: 220px;
-            height: 220px;
-            background-color: #000;
-            padding: 10px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+        .btn-primary:hover {
+            background-color: #5a6268;
         }
-        .logo-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: fill;
+        .forgot-password {
+            color: #adb5bd;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .forgot-password:hover {
+            color: #fff;
+        }
+        .text-danger {
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body class="d-flex align-items-center justify-content-center">
 
     <div class="text-center">
-
-        <!-- logo -->
-        <div class="logo-box mx-auto">
-            <img src="{% static 'oficina/imagens/logo.png' %}" alt="Logo da oficina">
-        </div>
-
-        <!-- fomulario -->
-        <div class="container" style="max-width: 400px;">
+        <!-- Container do formulário -->
+        <div class="container login-card">
             <div class="card shadow p-4">
+                <div class="card-body">
 
-                <h2 class="text-center mb-4">Lere Carburadores</h2>
+                    <!-- Ícone de ferramentas -->
+                    <div class="icon-tools">🔧🔩</div>
 
-                <form method="post">
-                    {% csrf_token %}
+                    <!-- Título -->
+                    <h4 class="text-center mb-4">LERE CARBURADORES</h4>
 
-                    <div class="mb-3">
+                    <!-- Formulário -->
+                    <form method="post">
+                        {% csrf_token %}
 
-                        <label for="{{ form.username.id_for_label }}"></label>
-                        {{ form.username|add_class:"form-control" | attr:"placeholder:Usuário" }}
-                        {% if form.username.errors %}
-                            <div class="text-danger">{{ form.username.errors }}</div>
+                        <div class="mb-3">
+                            <label for="{{ form.username.id_for_label }}" class="visually-hidden">Usuário</label>
+                            {{ form.username|add_class:"form-control" | attr:"placeholder:Usuário" }}
+                            {% if form.username.errors %}
+                                <div class="text-danger">{{ form.username.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.password.id_for_label }}" class="visually-hidden">Senha</label>
+                            {{ form.password|add_class:"form-control" | attr:"placeholder:Senha" }}
+                            {% if form.password.errors %}
+                                <div class="text-danger">{{ form.password.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        {% if form.non_field_errors %}
+                            <div class="text-danger">{{ form.non_field_errors }}</div>
                         {% endif %}
 
-                    </div>
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </form>
 
-                    <div class="mb-3">
-                        <label for="{{ form.password.id_for_label }}"></label>
-                        {{ form.password|add_class:"form-control" | attr:"placeholder:Senha" }}
-                        {% if form.password.errors %}
-                            <div class="text-danger">{{ form.password.errors }}</div>
-                        {% endif %}
-                    </div>
-
-                    {% if form.non_field_errors %}
-                        <div class="text-danger">{{ form.non_field_errors }}</div>
-                    {% endif %}
-
-                    <button type="submit" class="btn btn-primary w-100">Entrar</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-
+    
 </body>
 </html>
-

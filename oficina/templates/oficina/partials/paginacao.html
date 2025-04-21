@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center mt-4">
+    <nav aria-label="Navegação de páginas">
+        <ul class="pagination">
+            {% if clientes.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ clientes.previous_page_number }}" aria-label="Anterior">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">&laquo;</span>
+                </li>
+            {% endif %}
+
+            {% for num in clientes.paginator.page_range %}
+                <li class="page-item {% if num == clientes.number %}active{% endif %}">
+                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                </li>
+            {% endfor %}
+
+            {% if clientes.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ clientes.next_page_number }}" aria-label="Próxima">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">&raquo;</span>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+
+<style>
+    .pagination .page-link {
+    color: #fff;
+    background-color: #343a40;
+    border: 1px solid #495057;
+}
+
+.pagination .page-item.active .page-link {
+    background-color:hsl(2, 31, 75);
+    border-color:rgb(2, 31, 75);
+    color: #fff;
+}
+
+.pagination .page-link:hover {
+    background-color: #495057;
+    border-color: #6c757d;
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color:dark;
+    border-color: #444;
+    color: #888;
+}
+</style>

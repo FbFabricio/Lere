@@ -5,26 +5,11 @@
     <meta charset="UTF-8">
     <title>Editar Cliente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        #suggestions-box {
-            position: absolute;
-            background: white;
-            border: 1px solid #ccc;
-            width: 100%;
-            z-index: 999;
-        }
-        .suggestion {
-            padding: 8px;
-            cursor: pointer;
-        }
-        .suggestion:hover {
-            background-color: #f0f0f0;
-        }
-        </style>
+
 </head>
 <body class="bg-light">
 
-    {% include 'oficina/navbar.html' %}
+    {% include 'oficina/partials/navbar.html' %}
 
     <div class="container mt-5">
         <div class="card shadow-sm">
@@ -60,11 +45,17 @@
                     </div>
 
                     <div class="d-flex justify-content-between mt-4">
+                        <!-- Botão à esquerda -->
                         <a href="{% url 'lista_de_clientes' %}" class="btn btn-secondary">Voltar</a>
-                        <button type="submit" class="btn btn-success">Salvar Alterações</button>
-
-                        <a href="{% url 'remover_cliente' cliente.id %}" class="btn btn-danger"
-                        onclick="return confirm('Tem certeza que deseja remover este cliente?');">Remover Cliente</a>
+                    
+                        <!-- Botões à direita -->
+                        <div class="d-flex gap-2 ms-auto">
+                            <button type="submit" class="btn btn-success">Salvar Alterações</button>
+                            <a href="{% url 'remover_cliente' cliente.id %}" class="btn btn-danger"
+                               onclick="return confirm('Tem certeza que deseja remover este cliente?');">
+                               Remover Cliente
+                            </a>
+                        </div>
                     </div>
                 
                 </form>
@@ -73,6 +64,9 @@
         </div>
     </div>
     <script src="{% static 'js/pesquisa.js' %}"></script>
+
+    {% include 'oficina/partials/footer.html' %}
+    
 </body>
 </html>
 

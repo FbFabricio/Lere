@@ -2,19 +2,26 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
+from django.utils import timezone
+from django.core.paginator import Paginator
 from .models import Cliente
 from .forms import LoginForm, ClienteForm
 
 # Create your views here.
 
 
-# @login_required
+@login_required
 def contatos(request):
 
     ''' Mostra todos os clientes registratos em uma lista '''
     
-    clientes = Cliente.objects.all()
-    return render(request,'oficina/lista_contatos.html', {'clientes': clientes})
+    lista = Cliente.objects.all().order_by('-id')  # opcional: ordenação
+    paginator = Paginator(lista, 10)  # 10 clientes por página
+
+    page = request.GET.get('page')
+    clientes = paginator.get_page(page)
+
+    return render(request, 'oficina/lista_contatos.html', {'clientes': clientes})
 
 
 def login_view(request): 
@@ -34,33 +41,8 @@ def login_view(request):
 
     return render(request, 'oficina/login.html', {'form': form})
 
-# # @login_required
-# def cadastro(request):
 
-#     '''Tela de cadastro de cliente'''
-
-#     if request.method == 'POST':
-#         nome = request.POST.get('nome')
-#         carro = request.POST.get('carro')
-#         placa = request.POST.get('placa')
-
-#         # Criar e salvar no banco de dados
-#         Cliente.objects.create(nome=nome, carro=carro, placa=placa)
-
-#         return redirect()  # Redireciona para a lista de veículos
-
-#     return render(request, 'oficina/cadastro.html')
-
-
-# @login_required
-def historico(request):
-
-    '''Historico de clientes(mostra serviços passados)'''
-
-    historico = Cliente.objects.all()
-    return render(request, 'oficina/historico.html', {'historico': historico})
-
-
+@login_required
 def cadastro_cliente(request):
     
     if request.method == 'POST':
@@ -74,15 +56,16 @@ def cadastro_cliente(request):
     return render(request, 'oficina/cadastro.html', {'form': form})
 
 
-
+@login_required
 def detalhes_clientes(request,cliente_id):
 
     '''Tela com dados dos clientes detalhas'''
 
     cliente = get_object_or_404(Cliente, id=cliente_id)
-    return render(request, 'oficina/clientes.html', {'cliente': cliente})
+    return render(request, 'oficina/cliente.html', {'cliente': cliente})
 
 
+@login_required
 def editar_cliente(request, cliente_id):
 
     '''Edita os dados do cliente'''
@@ -100,14 +83,10 @@ def editar_cliente(request, cliente_id):
 
     return render(request, 'oficina/editar.html', {'form': form, 'cliente': cliente})
 
-
+@login_required
 def remover_cliente(request, cliente_id):
     cliente = get_object_or_404(Cliente, id=cliente_id)
     cliente.delete()
-    return redirect('lista_de_clientes')
+    return redirect('oficina/lista_contatos.html')
 
-def buscar_clientes(request):
-    q = request.GET.get('q', '')
-    clientes = Cliente.objects.filter(nome__icontains=q).values('id', 'nome')[:5]
-    return JsonResponse(list(clientes), safe=False)
 

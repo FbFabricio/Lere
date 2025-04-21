@@ -11,7 +11,7 @@ class Cliente(models.Model):
     carro = models.CharField(max_length=100)
     placa = models.CharField(max_length=10, unique=True)
     telefone = models.CharField(max_length=20, null=True, blank=True)
-    servicos = models.TextField(default=1000)
+    servicos = models.TextField(blank=str)
     Data_entrada = models.DateField(default=now)
     
 

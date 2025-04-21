@@ -7,19 +7,15 @@ urlpatterns = [
 
     path('cadastro/', views.cadastro_cliente , name='cadastro_clientes'),
 
-    path('historico/', views.historico , name='historico_clientes'),
-
     path('login/contatos/', views.contatos , name='clientes'),
 
-    path('clientes/<int:cliente_id>/' , views.detalhes_clientes , name='detalhes'),
+    path('cliente/<int:cliente_id>/' , views.detalhes_clientes , name='detalhes'),
     
-    path('clientes/<int:cliente_id>/editar/', views.editar_cliente , name='editar'),
-
+    path('cliente/<int:cliente_id>/editar/', views.editar_cliente , name='editar'),
 
     path('clientes/<int:cliente_id>/remover/', views.remover_cliente, name='remover_cliente'),
 
-    path('ajax/buscar_clientes/', views.buscar_clientes, name='buscar_clientes'),
+    path('/clientes/<int:cliente_id>/remover/oficina/lista_contatos.html', views.login_view)
 
-    
     ]
 

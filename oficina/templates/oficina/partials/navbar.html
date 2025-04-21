@@ -1,0 +1,40 @@
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-5 shadow-lg p-3 mb-4 " id="nav-1">    
+        
+        <div class="container-fluid">
+            
+            <a class="navbar-brand">LERE</a>
+
+        
+            <div class="collapse navbar-collapse justify-content-end" id="navbarLinks">
+                <ul class="nav nav-underline">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/cadastro/' %}active{% else %}text-light{% endif %}" href="{% url 'cadastro_clientes' %}">Cadastro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/contatos/' %}active{% else %}text-light{% endif %}" href="{% url 'lista_de_clientes' %}">Clientes</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+<style>
+    
+      .nav-link {
+        color: #ccc; /* cor padrão */
+        text-decoration: none;
+      }
+      
+      .nav-link.active {
+        color: white !important ; /* cor do link ativo */
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+      a {
+        text-decoration: none !important;
+      }
+      
+</style>
+    
