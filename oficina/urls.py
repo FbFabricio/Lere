@@ -15,7 +15,7 @@ urlpatterns = [
 
     path('clientes/<int:cliente_id>/remover/', views.remover_cliente, name='remover_cliente'),
 
-    path('/clientes/<int:cliente_id>/remover/oficina/lista_contatos.html', views.login_view)
+  
 
     ]
 

@@ -87,6 +87,6 @@ def editar_cliente(request, cliente_id):
 def remover_cliente(request, cliente_id):
     cliente = get_object_or_404(Cliente, id=cliente_id)
     cliente.delete()
-    return redirect('oficina/lista_contatos.html')
+    return redirect('lista_de_clientes')
 
 
