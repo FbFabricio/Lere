@@ -55,12 +55,29 @@ python manage.py createsuperuser
 ```bash
 python manage.py runserver
 ```
+### 🔹 7. Acessar o sistema sem criar um super usuário
+Vá ate as Views e retire todo os decoradores `@login_required`.
+```pyhon
+# @login_required -> comente todos decoradores
+def contatos(request):
 
-### 🔹 7. Acesse o sistema
+    ''' Mostra todos os clientes registratos em uma lista '''
+    
+    lista = Cliente.objects.all().order_by('-id')  # opcional: ordenação
+    paginator = Paginator(lista, 10)  # 10 clientes por página
+
+    page = request.GET.get('page')
+    clientes = paginator.get_page(page)
+
+    return render(request, 'oficina/lista_contatos.html', {'clientes': clientes})
+```
+
+### 🔹 8. Acesse o sistema
 
 ```bash
 http://127.0.0.1:8000/
 ```
+
 
 ---
 
