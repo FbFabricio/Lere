@@ -1,46 +1,35 @@
-<footer class="bg-dark text-white text-center py-2 mt-4 custom-footer">
-  <p class="mb-1">© 2025 Oficina LERE</p>
-  <small>Versão 1.0 • Desenvolvido por Você</small><br>
-  <small><a href="mailto:contato@lere.com" class="text-white">contato@lere.com</a></small>
-</footer>
-
-<style>
-  .custom-footer a {
-      color: #ccc;
-      text-decoration: none;
-  }
-
-  .custom-footer a:hover {
-      text-decoration: underline;
-      color: #fff;
-  }
-
-  .custom-footer {
-      background-color: #343a40;
-      padding: 0.5rem 1rem;
-      position: fixed; /* Fixa o footer na tela */
-      bottom: 0; /* Posiciona na parte inferior */
-      width: 100%; /* Garante que ocupe toda a largura */
-      box-sizing: border-box; /* Evita que o padding afete a largura total */
-      z-index: 1000; /* Garante que o footer fique acima de outros elementos */
-  }
-
-  .custom-footer p, .custom-footer small {
-      margin: 0;
-      line-height: 1.2;
-  }
-
-  .custom-footer small {
-      font-size: 0.75rem;
-  }
-
-  .custom-footer .text-white {
-      color: white !important;
-  }
-
-  /* Adiciona padding ao body para que o conteúdo não fique escondido atrás do footer */
-  body {
-      margin: 0;
-      padding-bottom: 60px; /* Altura aproximada do footer para evitar sobreposição */
-  }
-</style>
+<footer class="bg-dark text-white text-center py-2 mt-auto custom-footer">
+    <p class="mb-1">© 2025 Oficina LERE</p>
+    <small>Versão 1.0 • Desenvolvido por Você</small><br>
+    <small><a href="mailto:contato@lere.com" class="text-white">contato@lere.com</a></small>
+  </footer>
+  
+  <style>
+    .custom-footer {
+        background-color: #343a40;
+        padding: 0.5rem 1rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+  
+    .custom-footer a {
+        color: #ccc;
+        text-decoration: none;
+    }
+  
+    .custom-footer a:hover {
+        text-decoration: underline;
+        color: #fff;
+    }
+  
+    .custom-footer p,
+    .custom-footer small {
+        margin: 0;
+        line-height: 1.2;
+    }
+  
+    .custom-footer small {
+        font-size: 0.75rem;
+    }
+  </style>
+  

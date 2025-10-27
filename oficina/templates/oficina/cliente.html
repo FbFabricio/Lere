@@ -4,71 +4,67 @@
     <meta charset="UTF-8">
     <title>Cadastro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+    </style>
 </head>
-<body class="bg-light">
+<body class="bg-light d-flex flex-column min-vh-100">
+    
+    {% include 'oficina/partials/navbar.html' %}
 
-    {% include 'oficina/partials/navbar.html'%}
+    <main class="flex-grow-1">
+        <div class="container mt-5">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">Cadastro</h3>
+                    <h5 class="mb-3">Informações do Cliente</h5>
 
-    <div class="container mt-5">
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <h3 class="card-title mb-4">Cadastro</h3>
-                <h5 class="mb-3">Informações do Cliente</h5>
+                    <form method="POST">
+                        {% csrf_token %}
 
-                <form method="POST">
-                    {% csrf_token %}
-
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            
-                            <p><strong>Nome:</strong> {{ cliente.nome }}</p>
-
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <p><strong>Nome:</strong> {{ cliente.nome }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Carro:</strong> {{ cliente.nome }}</p>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            
-                            <p><strong>Carro:</strong> {{ cliente.nome }}</p>
 
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <p><strong>Placa:</strong> {{ cliente.placa }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Contato:</strong> {{ cliente.telefone }}</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            
-                            <p><strong>Placa:</strong> {{ cliente.placa }}</p>
-
+                        <div class="mb-3">
+                            <p><strong>Serviços:</strong> {{ cliente.servicos }}</p>
                         </div>
-                        <div class="col-md-6">
-                            
-                            <p><strong>Contato:</strong> {{ cliente.telefone }}</p>
 
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'lista_de_clientes' %}" class="btn btn-secondary">Voltar</a>
+
+                            <div class="d-flex gap-2 ms-auto">
+                                <a href="{% url 'editar' cliente.id %}" class="btn btn-success">Editar contato</a>
+                                <a href="{% url 'remover_cliente' cliente.id %}" class="btn btn-danger"
+                                onclick="return confirm('Deseja encerrar o serviço ?');">Encerrar serviço</a>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="mb-3">
-                        
-                        <p><strong>Serviços:</strong> {{ cliente.servicos}}</p>
-
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <a href="{% url 'lista_de_clientes' %}" class="btn btn-secondary">Voltar</a>
-                    
-                        <div class="d-flex gap-2 ms-auto">
-                            <a href="{% url 'editar' cliente.id %}" class="btn btn-success">Editar contato</a>
-                            <a href="{% url 'remover_cliente' cliente.id %}" class="btn btn-danger"
-                               onclick="return confirm('Deseja encerrar o serviço ?');">Encerrar serviço</a>
-                        </div>
-                    </div>
-
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
+
     {% include 'oficina/partials/footer.html' %}
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
- 
-    
 </body>
 </html>
