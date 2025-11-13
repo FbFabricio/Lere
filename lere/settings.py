@@ -33,7 +33,7 @@ SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 # Tempo de expiração da sessão (em segundos) – 1 minuto
 SESSION_COOKIE_AGE = 28800  
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'novodominio.com']
+ALLOWED_HOSTS = ['']
 
 
 # Application definition
