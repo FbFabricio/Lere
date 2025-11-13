@@ -7,6 +7,7 @@ from django.core.paginator import Paginator
 from .models import Cliente
 from .forms import LoginForm, ClienteForm
 
+
 # Create your views here.
 
 

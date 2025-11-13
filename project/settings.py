@@ -50,9 +50,9 @@ INSTALLED_APPS = [
     'widget_tweaks',
 ]
 
-LOGIN_URL = '/login/'  # URL para redirecionar usuários não autenticados
+LOGIN_URL = 'login/'  # URL para redirecionar usuários não autenticados
 LOGIN_REDIRECT_URL = 'lista_contatos/'  # Para onde ir após login
-LOGOUT_REDIRECT_URL = ''  # Para onde ir após logout
+LOGOUT_REDIRECT_URL = 'login/'  # Para onde ir após logout
 LOGIN_REDIRECT_URL = 'contatos/'
 
 MIDDLEWARE = [
