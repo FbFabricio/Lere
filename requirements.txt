@@ -8,8 +8,4 @@ gunicorn==23.0.0
 packaging==25.0
 sqlparse==0.5.3
 tzdata==2025.2
-<<<<<<< HEAD
 whitenoise==6.11.0
-=======
-whitenoise==6.11.0
->>>>>>> 7b8dcbb67fb106159a28ec7d47538139ed678784
