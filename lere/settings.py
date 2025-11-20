@@ -101,7 +101,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse()
+    'default': dj_database_url.parse(postgresql://postgres:[lere2292!]@db.aklypspkcdrcmeulqxzu.supabase.co:5432/postgres)
 }
 
 # Password validation
