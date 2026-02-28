@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os 
 import dj_database_url # type: ignore
-
+from decouple import config 
 
 
 
@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-sn2jn(wx7-zi-5i@lf8f9a^5by15vmyg&hzvvhrxtnjfsi=#x*'
+SECRET_KEY = config('SECRET_KEY')
 
 
 
@@ -42,7 +42,7 @@ SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 # Tempo de expiração da sessão (em segundos) – 1 minuto
 SESSION_COOKIE_AGE = 28800  
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
 
 
 # Application definition
@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     #meu app
     'oficina',
     'widget_tweaks',
+    'django-crontab',
 ]
 
 LOGIN_URL = 'login/'  # URL para redirecionar usuários não autenticados
@@ -74,6 +75,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+]
+
+CRONJOBS = [
+    ('0 18 * * *', 'oficina.export_clientes.export_supabase')
 ]
 
 ROOT_URLCONF = 'lere.urls'
@@ -103,12 +108,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600,
-        conn_health_checks=True,
-        ssl_require=True
-    )
+    'default': dj_database_url.parse(config('DATABASE_URL'))
+
 }
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
