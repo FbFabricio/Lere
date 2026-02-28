@@ -16,5 +16,5 @@ jobs:
           env:
             SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
             SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-            DJANGO_SETTINGS_MODULE: seu_projeto.settings
+            DJANGO_SETTINGS_MODULE: lere.settings
             DATABASE_URL: ${{ secrets.DATABASE_URL }}
