@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     #meu app
     'oficina',
     'widget_tweaks',
-    'django-crontab',
+    
 ]
 
 LOGIN_URL = 'login/'  # URL para redirecionar usuários não autenticados
@@ -77,9 +77,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-CRONJOBS = [
-    ('0 18 * * *', 'oficina.export_clientes.export_supabase')
-]
+
 
 ROOT_URLCONF = 'lere.urls'
 
