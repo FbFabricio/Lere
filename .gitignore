@@ -11,6 +11,7 @@ virtualenv/
 
 # Django SQLite database
 db.sqlite3
+db.sqlite3pytho
 
 # Django migrations (as they can be recreated)
 */migrations/

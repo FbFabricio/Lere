@@ -1,0 +1,20 @@
+name: Export Clientes CSV
+on:
+    schedule:
+      - cron: "0 2 * * *"   # todo dia às 02:00 UTC
+    workflow_dispatch:       # permite rodar manualmente
+jobs:
+   export:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - uses: actions/setup-python@v4
+          with:
+            python-version: "3.11"
+        - run: pip install -r requirements.txt
+        - run: python export_supabase.py
+          env:
+            SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+            SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+            DJANGO_SETTINGS_MODULE: seu_projeto.settings
+            DATABASE_URL: ${{ secrets.DATABASE_URL }}
