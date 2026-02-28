@@ -1,7 +1,7 @@
 name: Export Clientes CSV
 on:
     schedule:
-      - cron: "0 2 * * *"   # todo dia às 02:00 UTC
+      - cron: "30 22 * * *"   # todo dia às 02:00 UTC
     workflow_dispatch:       # permite rodar manualmente
 jobs:
    export:
